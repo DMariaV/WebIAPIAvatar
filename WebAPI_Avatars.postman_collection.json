@@ -1,0 +1,1112 @@
+{
+	"info": {
+		"_postman_id": "c48e8c58-37cc-473b-bbed-7939c5bb4a53",
+		"name": "WebAPI_Avatars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllPerson",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aab2ce0e-f431-43dd-bfaa-238c93bfcfe1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPerson(OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dfb573a0-7086-492f-8b9c-d696fc6e7770",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1"
+					]
+				},
+				"description": "Возвращает из базы объект класса Person по указанному ID"
+			},
+			"response": [
+				{
+					"name": "GetPerson_by_Id (OK)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44346/api/person/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"person",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Oct 2020 18:37:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"surname\": \"Белова\",\n    \"name\": \"Катерина\",\n    \"patronymic\": \"Сергеевна\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetPerson(NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c8840a51-f852-4bda-a0aa-769f218f4648",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/person/0",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"person",
+						"0"
+					]
+				},
+				"description": "Возвращение ошибки код:404 (NotFound) при запросе по отсутвующему в базе ID"
+			},
+			"response": [
+				{
+					"name": "GetPerson_by_Id (NotFound)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44346/api/person/44",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"person",
+								"44"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Oct 2020 18:38:04 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.4\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"traceId\": \"|383d5-4c0dd57515e6e5b6.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetFacePhoto_of_Person(OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "88bfd36d-2c75-4474-8d4b-8276f311c855",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person/1/face/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face",
+						"1"
+					]
+				},
+				"description": "Получение фото из базы данных, имеющее указанные в запросе  IDPerson и ID(Face)"
+			},
+			"response": []
+		},
+		{
+			"name": "GetFacePhoto_of_Person(NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7716506-d2b9-4ff9-a59e-645bca018024",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/person/1/face/0",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face",
+						"0"
+					]
+				},
+				"description": "Возвращает ошибку код:404, если фото с указанным ID нет в базе"
+			},
+			"response": [
+				{
+					"name": "GetPhoto_by_Id_and_IdPerson (NotFound)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44346/api/person/1/face/66",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44346",
+							"path": [
+								"api",
+								"person",
+								"1",
+								"face",
+								"66"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/problem+json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Oct 2020 18:37:07 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"type\": \"https://tools.ietf.org/html/rfc7231#section-6.5.4\",\n    \"title\": \"Not Found\",\n    \"status\": 404,\n    \"traceId\": \"|383d3-4c0dd57515e6e5b6.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetPerson_by_FacePhoto (OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "096ec75d-b96a-4e20-97be-4c3b400ff62a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "image/jpeg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/black3.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "html"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/person/find_by_photo",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"find_by_photo"
+					]
+				},
+				"description": "Находит в базе объект Person фото(аватар), которого совпадает с присланным"
+			},
+			"response": []
+		},
+		{
+			"name": "GetPerson_by_FacePhoto (NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "096ec75d-b96a-4e20-97be-4c3b400ff62a",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {},
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "image/jpeg",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/bw1.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "html"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/person/find_by_photo",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"find_by_photo"
+					]
+				},
+				"description": "Объект Person с заданным FacePhoto в базе данных не найден"
+			},
+			"response": []
+		},
+		{
+			"name": "PostFacePhoto_for_Person(Id) (OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68dcca00-4b80-4c42-8f5a-7e62dcf07c00",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/black.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/person/1/face",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face"
+					]
+				},
+				"description": "Добавляет новое фото (аватар) для Person с указанным id"
+			},
+			"response": []
+		},
+		{
+			"name": "PostFacePhoto_for_Person(Id) (BadRequest) too big photo file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7fc5208b-370e-48af-afab-506d0d4bc44b",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/NoAvatar (too big).jpeg.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/person/1/face",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostPerson_with_Photo (OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2bbd9a1-1bcb-4c0d-ae26-d02687957456",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json; image/jpeg",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "a",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "person[Surname]",
+							"value": "Белов",
+							"type": "text"
+						},
+						{
+							"key": "person[Name]",
+							"value": "Александр",
+							"type": "text"
+						},
+						{
+							"key": "person[Patronymic]",
+							"value": "Александрович",
+							"contentType": "",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/white.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/person",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Добавляет в базу данных новый объект Person совместно с его фото (аватаром)"
+			},
+			"response": []
+		},
+		{
+			"name": "PostPerson_with_Photo (BadRequest) Other photo format",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2bbd9a1-1bcb-4c0d-ae26-d02687957456",
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json; image/jpeg",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "a",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "person[Surname]",
+							"value": "Белов",
+							"type": "text"
+						},
+						{
+							"key": "person[Name]",
+							"value": "Александр",
+							"type": "text"
+						},
+						{
+							"key": "person[Patronymic]",
+							"value": "Александрович",
+							"contentType": "",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/NoAvatar(png).png"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/person",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUTPerson(OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15f463ac-4b2c-46f7-91fd-f7d9d1afbc99",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "person[Id]",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "person[Name]",
+							"value": "Екатерина",
+							"type": "text"
+						},
+						{
+							"key": "person[Surname]",
+							"value": "Чернова",
+							"type": "text"
+						},
+						{
+							"key": "person[Patronymic]",
+							"value": "Сергеевна",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/person",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				},
+				"description": "Изменяет значение объекта Person с указанным ID в БД"
+			},
+			"response": []
+		},
+		{
+			"name": "PUTPerson(NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15f463ac-4b2c-46f7-91fd-f7d9d1afbc99",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "person[Id]",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "person[Name]",
+							"value": "Екатерина",
+							"type": "text"
+						},
+						{
+							"key": "person[Surname]",
+							"value": "Чернова",
+							"type": "text"
+						},
+						{
+							"key": "person[Patronymic]",
+							"value": "Сергеевна",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/api/person",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutFacePhoto_of_Person(ОК)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1352b1a8-2f76-4796-9ca9-41b48f28b767",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/black4.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/person/1/face/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutFacePhoto_of_Person(NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1352b1a8-2f76-4796-9ca9-41b48f28b767",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/G:/PhotoWebAPI/PhotoWebAPI/PhotoWebAPI/Avatars/black4.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/api/person/1/face/0",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteFacePhoto(OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bf95c3f-3848-48db-9374-fb308bd2a8fd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person/1/face/2",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face",
+						"2"
+					]
+				},
+				"description": "Удаляет фото(аватар) с указанным Id-номером и Id номером Person, которому принадлежит данный аватар"
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteFacePhoto(BadRequest) SinglePhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bf95c3f-3848-48db-9374-fb308bd2a8fd",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person/2/face/1",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"2",
+						"face",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteFacePhoto(NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bf95c3f-3848-48db-9374-fb308bd2a8fd",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person/1/face/0",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"1",
+						"face",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePerson(OK)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39c1e2b4-aa17-4a18-8b84-a35ae1aaafc6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person/2",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"2"
+					]
+				},
+				"description": "Удаляет всю информацию из базы о Person c указанным номером"
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePerson(NotFound)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39c1e2b4-aa17-4a18-8b84-a35ae1aaafc6",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/api/person/0",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"api",
+						"person",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
